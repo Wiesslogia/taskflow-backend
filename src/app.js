@@ -1,24 +1,23 @@
 import express from 'express';
 import cors from 'cors';
-import cors from 'cors';
-import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
-export const app = express();
+const app = express();
 
 app.use(cors());
 app.use(helmet());
-app.use(rateLimit);
+// app.use(rateLimit);
 app.use(express.json());
 
 const limiter = rateLimit({
-    windowMs: 1 * 60 * 1000,
+    windowMs: 10 * 60 * 1000,
     max:20
 })
 
 app.use(limiter);
 
-app.get('/', (req, res) => {
+app.get('/',limiter, (req, res) => {
     res.send('TaskFlow API is running');
 });
 
