@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import authRoutes from './routes/auth.routes.js';
 import projectRoutes from './routes/project.routes.js';
+import taskRoutes from './routes/task.routes.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(limiter);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
 
 app.get('/',limiter, (req, res) => {
     res.send('TaskFlow API is running');
