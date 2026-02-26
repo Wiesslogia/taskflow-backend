@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import authRoutes from './routes/auth.routes.js';
+import projectRoutes from './routes/project.routes.js';
 
 const app = express();
 
@@ -19,9 +20,11 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
 
 app.get('/',limiter, (req, res) => {
     res.send('TaskFlow API is running');
 });
+
 
 export default app;

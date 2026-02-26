@@ -6,8 +6,6 @@ import{ registerValidator, loginValidator } from '../validators/auth.validator.j
 
 const router = express.Router();
 
-// IMPORTANT: Add validation rules BEFORE validateRequest middleware
-// This ensures fields are checked before reaching the controller
 router.post('/register', 
     
     registerValidator,

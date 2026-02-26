@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs';
 import User from '../models/user.model.js';
 
 export const registerUser = async (data) => {
-    // IMPORTANT: Use 'name' (not 'username') - must match the User model field name
     const { name, email, password } = data;
 
     
@@ -15,7 +14,6 @@ export const registerUser = async (data) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     
-    // IMPORTANT: Create user with 'name' field to match User model schema
     const user = await User.create({
         name,
         email,
